@@ -11,11 +11,12 @@ services:
     hostname: postgres
     user: root
   web:
-    image: php:7.2-apache
+    image: php:7.4-apache
     volumes:
       - "./index.php:/var/www/html/index.php"
       - "./application:/var/www/html/application"
       - "./system:/var/www/html/system"
+      - "./vendor:/var/www/html/vendor"
     ports:
       - 80:80
 
