@@ -2,7 +2,13 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/node:4.8.2
+      - image: php:7.4-apache
+      - volumes:
+        - "./index.php:/var/www/html/index.php"
+        - "./application:/var/www/html/application"
+        - "./system:/var/www/html/system"
+        - "./vendor:/var/www/html/vendor"
     steps:
       - checkout
       - run: echo "hello world"
+      - run: vendor/bin/phpunit -c application/tests/ --debug
