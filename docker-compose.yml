@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    ports:
+      - 9432:5432
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    hostname: postgres
+    user: root
+  web:
+    image: php:7.2-apache
+    volumes:
+      - "./index.php:/var/www/html/index.php"
+      - "./application:/var/www/html/application"
+      - "./system:/var/www/html/system"
+    ports:
+      - 80:80
+
